@@ -1,0 +1,100 @@
+{
+  "index_patterns": [
+    "sysmon-logs-*"
+  ],
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1,
+    "index.refresh_interval": "5s",
+    "index.codec": "best_compression",
+    "index.lifecycle.name": "apt-detection-policy",
+    "index.lifecycle.rollover_alias": "sysmon-logs"
+  },
+  "mappings": {
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "event_category": {
+        "type": "keyword"
+      },
+      "threat_score": {
+        "type": "integer"
+      },
+      "mitre_technique": {
+        "type": "keyword"
+      },
+      "mitre_tactic": {
+        "type": "keyword"
+      },
+      "winlog": {
+        "properties": {
+          "event_id": {
+            "type": "integer"
+          },
+          "channel": {
+            "type": "keyword"
+          },
+          "event_data": {
+            "properties": {
+              "Image": {
+                "type": "keyword"
+              },
+              "CommandLine": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword"
+                  }
+                }
+              },
+              "ProcessId": {
+                "type": "integer"
+              },
+              "ParentProcessId": {
+                "type": "integer"
+              },
+              "User": {
+                "type": "keyword"
+              },
+              "SourceIp": {
+                "type": "ip"
+              },
+              "DestinationIp": {
+                "type": "ip"
+              },
+              "DestinationPort": {
+                "type": "integer"
+              },
+              "TargetImage": {
+                "type": "keyword"
+              },
+              "GrantedAccess": {
+                "type": "keyword"
+              },
+              "TargetObject": {
+                "type": "keyword"
+              },
+              "Details": {
+                "type": "text"
+              }
+            }
+          }
+        }
+      },
+      "destination_geo": {
+        "properties": {
+          "country_name": {
+            "type": "keyword"
+          },
+          "city_name": {
+            "type": "keyword"
+          },
+          "location": {
+            "type": "geo_point"
+          }
+        }
+      }
+    }
+  }
+}

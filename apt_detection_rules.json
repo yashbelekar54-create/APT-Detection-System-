@@ -1,0 +1,541 @@
+{
+  "reconnaissance": {
+    "nmap_scan_detection": {
+      "rule": {
+        "name": "Port Scan Detection via Zeek",
+        "description": "Detects potential reconnaissance activity through port scanning patterns",
+        "risk_score": 47,
+        "severity": "medium",
+        "type": "threshold",
+        "query": "\n            network.protocol:\"tcp\" AND \n            zeek.conn.state:\"REJ\" AND \n            source.ip:* AND \n            destination.port:(21 OR 22 OR 23 OR 53 OR 80 OR 443 OR 445 OR 3389) AND\n            NOT source.ip:(10.0.0.0/8 OR 172.16.0.0/12 OR 192.168.0.0/16)\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1046",
+                "name": "Network Service Scanning",
+                "reference": "https://attack.mitre.org/techniques/T1046"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: Port Scan Detection via Zeek",
+              "message": "Rule: Port Scan Detection via Zeek\nSeverity: medium\nMITRE ATT&CK: T1046 - Network Service Scanning"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1046",
+          "Reconnaissance"
+        ],
+        "threshold": {
+          "field": "source.ip",
+          "value": 10,
+          "timeframe": "5m"
+        }
+      }
+    }
+  },
+  "credential_dumping": {
+    "mimikatz_detection": {
+      "rule": {
+        "name": "Credential Dumping - Mimikatz Execution",
+        "description": "Detects potential credential dumping via Mimikatz or similar tools",
+        "risk_score": 73,
+        "severity": "high",
+        "type": "query",
+        "query": "\n            event.code:\"1\" AND \n            winlog.event_data.Image:\"*mimikatz*\" OR \n            winlog.event_data.CommandLine:(\"*sekurlsa*\" OR \"*lsadump*\" OR \"*kerberos*\" OR \"*wdigest*\")\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1003.001",
+                "name": "LSASS Memory Dumping",
+                "reference": "https://attack.mitre.org/techniques/T1003/001"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: Credential Dumping - Mimikatz Execution",
+              "message": "Rule: Credential Dumping - Mimikatz Execution\nSeverity: high\nMITRE ATT&CK: T1003.001 - LSASS Memory Dumping"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1003.001",
+          "Credential Dumping"
+        ]
+      }
+    },
+    "lsass_access_detection": {
+      "rule": {
+        "name": "Suspicious LSASS Memory Access",
+        "description": "Detects unauthorized access to LSASS memory which may indicate credential dumping",
+        "risk_score": 73,
+        "severity": "high",
+        "type": "query",
+        "query": "\n            event.code:\"10\" AND \n            winlog.event_data.TargetImage:\"*lsass.exe\" AND\n            winlog.event_data.GrantedAccess:(\"0x1010\" OR \"0x1038\" OR \"0x143a\") AND\n            NOT winlog.event_data.SourceImage:(\"*svchost.exe\" OR \"*csrss.exe\" OR \"*wininit.exe\")\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1003.001",
+                "name": "LSASS Memory Dumping",
+                "reference": "https://attack.mitre.org/techniques/T1003/001"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: Suspicious LSASS Memory Access",
+              "message": "Rule: Suspicious LSASS Memory Access\nSeverity: high\nMITRE ATT&CK: T1003.001 - LSASS Memory Dumping"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1003.001",
+          "Credential Dumping"
+        ]
+      }
+    }
+  },
+  "lateral_movement": {
+    "wmi_lateral_movement": {
+      "rule": {
+        "name": "WMI-based Lateral Movement",
+        "description": "Detects lateral movement using Windows Management Instrumentation",
+        "risk_score": 47,
+        "severity": "medium",
+        "type": "query",
+        "query": "\n            (event.code:\"1\" AND winlog.event_data.ParentImage:\"*wmiprvse.exe\") OR\n            (network.protocol:\"tcp\" AND destination.port:135 AND \n             process.name:\"wmic.exe\" AND process.args:(\"/node:\" OR \"process call create\"))\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1047",
+                "name": "Windows Management Instrumentation",
+                "reference": "https://attack.mitre.org/techniques/T1047"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: WMI-based Lateral Movement",
+              "message": "Rule: WMI-based Lateral Movement\nSeverity: medium\nMITRE ATT&CK: T1047 - Windows Management Instrumentation"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1047",
+          "Lateral Movement"
+        ]
+      }
+    },
+    "smb_lateral_movement": {
+      "rule": {
+        "name": "SMB-based Lateral Movement",
+        "description": "Detects lateral movement attempts using SMB protocol",
+        "risk_score": 47,
+        "severity": "medium",
+        "type": "query",
+        "query": "\n            event.action:\"network-connection-detected\" AND \n            destination.port:445 AND\n            NOT (source.ip:(10.0.0.0/8 OR 172.16.0.0/12 OR 192.168.0.0/16) AND\n                 destination.ip:(10.0.0.0/8 OR 172.16.0.0/12 OR 192.168.0.0/16))\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1021.002",
+                "name": "SMB/Windows Admin Shares",
+                "reference": "https://attack.mitre.org/techniques/T1021/002"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: SMB-based Lateral Movement",
+              "message": "Rule: SMB-based Lateral Movement\nSeverity: medium\nMITRE ATT&CK: T1021.002 - SMB/Windows Admin Shares"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1021.002",
+          "Lateral Movement"
+        ]
+      }
+    }
+  },
+  "persistence": {
+    "registry_persistence": {
+      "rule": {
+        "name": "Registry Run Key Persistence",
+        "description": "Detects persistence mechanisms via registry run keys",
+        "risk_score": 47,
+        "severity": "medium",
+        "type": "query",
+        "query": "\n            event.code:\"13\" AND \n            (winlog.event_data.TargetObject:*Run* OR \n             winlog.event_data.TargetObject:*RunOnce* OR\n             winlog.event_data.TargetObject:*RunServices*) AND\n            winlog.event_data.Details:(\"*.exe\" OR \"*.bat\" OR \"*.cmd\" OR \"*.ps1\")\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1547.001",
+                "name": "Registry Run Keys / Startup Folder",
+                "reference": "https://attack.mitre.org/techniques/T1547/001"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: Registry Run Key Persistence",
+              "message": "Rule: Registry Run Key Persistence\nSeverity: medium\nMITRE ATT&CK: T1547.001 - Registry Run Keys / Startup Folder"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1547.001",
+          "Persistence"
+        ]
+      }
+    },
+    "service_persistence": {
+      "rule": {
+        "name": "Suspicious Service Creation",
+        "description": "Detects creation of suspicious Windows services for persistence",
+        "risk_score": 47,
+        "severity": "medium",
+        "type": "query",
+        "query": "\n            event.code:\"7045\" AND\n            (winlog.event_data.ServiceType:\"0x10\" OR winlog.event_data.ServiceType:\"0x20\") AND\n            NOT winlog.event_data.ServiceName:(\"Windows*\" OR \"Microsoft*\")\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1543.003",
+                "name": "Windows Service",
+                "reference": "https://attack.mitre.org/techniques/T1543/003"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: Suspicious Service Creation",
+              "message": "Rule: Suspicious Service Creation\nSeverity: medium\nMITRE ATT&CK: T1543.003 - Windows Service"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1543.003",
+          "Persistence"
+        ]
+      }
+    }
+  },
+  "data_exfiltration": {
+    "dns_tunneling": {
+      "rule": {
+        "name": "DNS Tunneling Detection",
+        "description": "Detects potential data exfiltration via DNS tunneling",
+        "risk_score": 73,
+        "severity": "high",
+        "type": "query",
+        "query": "\n            dns.question.type:\"TXT\" AND \n            dns.question.name.length:>100 AND\n            (dns.question.name:*\".in-addr.arpa\" OR \n             dns.question.name:*\".ip6.arpa\" OR\n             dns.question.name regex \".*[0-9a-f]{32}.*\")\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1048.003",
+                "name": "Exfiltration Over Alternative Protocol",
+                "reference": "https://attack.mitre.org/techniques/T1048/003"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: DNS Tunneling Detection",
+              "message": "Rule: DNS Tunneling Detection\nSeverity: high\nMITRE ATT&CK: T1048.003 - Exfiltration Over Alternative Protocol"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1048.003",
+          "Data Exfiltration"
+        ]
+      }
+    },
+    "large_data_transfer": {
+      "rule": {
+        "name": "Unusual Outbound Data Transfer",
+        "description": "Detects unusually large outbound data transfers",
+        "risk_score": 47,
+        "severity": "medium",
+        "type": "threshold",
+        "query": "\n            network.direction:\"outbound\" AND \n            network.bytes:>10485760 AND\n            NOT destination.ip:(10.0.0.0/8 OR 172.16.0.0/12 OR 192.168.0.0/16) AND\n            NOT destination.domain:(\"*.microsoft.com\" OR \"*.google.com\" OR \"*.amazonaws.com\")\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1041",
+                "name": "Exfiltration Over C2 Channel",
+                "reference": "https://attack.mitre.org/techniques/T1041"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: Unusual Outbound Data Transfer",
+              "message": "Rule: Unusual Outbound Data Transfer\nSeverity: medium\nMITRE ATT&CK: T1041 - Exfiltration Over C2 Channel"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1041",
+          "Data Exfiltration"
+        ],
+        "threshold": {
+          "field": "source.ip",
+          "value": 3,
+          "timeframe": "1h"
+        }
+      }
+    }
+  },
+  "powershell_abuse": {
+    "obfuscated_powershell": {
+      "rule": {
+        "name": "Obfuscated PowerShell Execution",
+        "description": "Detects obfuscated PowerShell commands often used by APT groups",
+        "risk_score": 73,
+        "severity": "high",
+        "type": "query",
+        "query": "\n            event.code:\"1\" AND \n            process.name:\"powershell.exe\" AND\n            (process.args:(\"-enc\" OR \"-EncodedCommand\" OR \"-w hidden\" OR \"-WindowStyle Hidden\") OR\n             process.args regex \".*[A-Za-z0-9+/]{100,}.*\" OR\n             process.args:(\"IEX\" OR \"Invoke-Expression\" OR \"Net.WebClient\" OR \"DownloadString\"))\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1059.001",
+                "name": "PowerShell",
+                "reference": "https://attack.mitre.org/techniques/T1059/001"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: Obfuscated PowerShell Execution",
+              "message": "Rule: Obfuscated PowerShell Execution\nSeverity: high\nMITRE ATT&CK: T1059.001 - PowerShell"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1059.001",
+          "Powershell Abuse"
+        ]
+      }
+    },
+    "powershell_download_cradle": {
+      "rule": {
+        "name": "PowerShell Download Cradle",
+        "description": "Detects PowerShell download cradles used to fetch malicious payloads",
+        "risk_score": 73,
+        "severity": "high",
+        "type": "query",
+        "query": "\n            event.code:\"1\" AND\n            process.name:\"powershell.exe\" AND\n            (process.args:(\"Net.WebClient\" OR \"System.Net.WebClient\" OR \"wget\" OR \"curl\" OR \"Invoke-WebRequest\" OR \"iwr\") AND\n             process.args:(\"DownloadFile\" OR \"DownloadString\" OR \"DownloadData\"))\n            ",
+        "language": "kuery",
+        "interval": "5m",
+        "from": "now-6m",
+        "to": "now",
+        "filters": [],
+        "threat": [
+          {
+            "framework": "MITRE ATT&CK",
+            "technique": [
+              {
+                "id": "T1059.001",
+                "name": "PowerShell",
+                "reference": "https://attack.mitre.org/techniques/T1059/001"
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "id": "email-alert",
+            "group": "default",
+            "params": {
+              "to": [
+                "soc-team@organization.com"
+              ],
+              "subject": "APT Detection Alert: PowerShell Download Cradle",
+              "message": "Rule: PowerShell Download Cradle\nSeverity: high\nMITRE ATT&CK: T1059.001 - PowerShell"
+            }
+          }
+        ],
+        "enabled": true,
+        "tags": [
+          "APT Detection",
+          "MITRE ATT&CK",
+          "TT1059.001",
+          "Powershell Abuse"
+        ]
+      }
+    }
+  }
+}

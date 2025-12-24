@@ -1,0 +1,908 @@
+[
+  {
+    "@timestamp": "2025-09-24T15:27:09.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 57224,
+      "resp_h": "192.168.1.38",
+      "resp_p": 445
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:11.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 57588,
+      "resp_h": "192.168.1.236",
+      "resp_p": 443
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:13.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 51053,
+      "resp_h": "192.168.1.17",
+      "resp_p": 443
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:15.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 57155,
+      "resp_h": "192.168.1.227",
+      "resp_p": 22
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:17.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 50490,
+      "resp_h": "192.168.1.169",
+      "resp_p": 3389
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:19.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 58885,
+      "resp_h": "192.168.1.83",
+      "resp_p": 80
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:21.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 51069,
+      "resp_h": "192.168.1.27",
+      "resp_p": 443
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:23.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 50926,
+      "resp_h": "192.168.1.77",
+      "resp_p": 445
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:25.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 56603,
+      "resp_h": "192.168.1.2",
+      "resp_p": 22
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:27.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 59918,
+      "resp_h": "192.168.1.158",
+      "resp_p": 445
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:29.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 54741,
+      "resp_h": "192.168.1.219",
+      "resp_p": 443
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:31.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 51825,
+      "resp_h": "192.168.1.106",
+      "resp_p": 445
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:33.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 58819,
+      "resp_h": "192.168.1.147",
+      "resp_p": 3389
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:35.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 55964,
+      "resp_h": "192.168.1.127",
+      "resp_p": 443
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:27:37.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 50614,
+      "resp_h": "192.168.1.162",
+      "resp_p": 3389
+    },
+    "conn_state": "REJ",
+    "duration": 0.1,
+    "orig_bytes": 0,
+    "resp_bytes": 0,
+    "threat_score": 5,
+    "mitre_technique": "T1046",
+    "mitre_tactic": "Discovery",
+    "tags": [
+      "port_scan_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:32:09.961284",
+    "event_category": "process_creation",
+    "winlog": {
+      "event_id": 1,
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_data": {
+        "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CommandLine": "powershell.exe -enc JABzAD0ATgBlAHcALQBPAGIAagBlAGMAdAAgAEkATwAuAE0AZQBtAG8AcgB5AFMAdAByAGUA",
+        "ProcessId": 1234,
+        "ParentProcessId": 5678,
+        "User": "DOMAIN\\user01"
+      }
+    },
+    "threat_score": 7,
+    "mitre_technique": "T1059.001",
+    "mitre_tactic": "Execution",
+    "tags": [
+      "suspicious_powershell"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:42:09.961284",
+    "event_category": "process_access",
+    "winlog": {
+      "event_id": 10,
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_data": {
+        "SourceImage": "C:\\Windows\\Temp\\dump.exe",
+        "TargetImage": "C:\\Windows\\System32\\lsass.exe",
+        "GrantedAccess": "0x1010",
+        "ProcessId": 2345
+      }
+    },
+    "threat_score": 8,
+    "mitre_technique": "T1003.001",
+    "mitre_tactic": "Credential Access",
+    "tags": [
+      "lsass_access",
+      "credential_dumping"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T15:57:09.961284",
+    "event_category": "process_creation",
+    "winlog": {
+      "event_id": 1,
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_data": {
+        "Image": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+        "CommandLine": "C:\\Windows\\system32\\wbem\\wmiprvse.exe -secured -Embedding",
+        "ProcessId": 3456,
+        "ParentProcessId": 1234,
+        "User": "DOMAIN\\admin"
+      }
+    },
+    "threat_score": 6,
+    "mitre_technique": "T1047",
+    "mitre_tactic": "Lateral Movement",
+    "tags": [
+      "wmi_execution"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T16:17:09.961284",
+    "event_category": "registry_value_set",
+    "winlog": {
+      "event_id": 13,
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_data": {
+        "TargetObject": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\WindowsUpdate",
+        "Details": "C:\\Windows\\Temp\\svchost.exe",
+        "ProcessId": 4567
+      }
+    },
+    "threat_score": 7,
+    "mitre_technique": "T1547.001",
+    "mitre_tactic": "Persistence",
+    "tags": [
+      "registry_persistence"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T16:42:09.961284",
+    "event_category": "file_create",
+    "winlog": {
+      "event_id": 11,
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_data": {
+        "TargetFilename": "C:\\Windows\\Temp\\data_0.zip",
+        "ProcessId": 5678,
+        "Image": "C:\\Windows\\System32\\cmd.exe"
+      }
+    },
+    "threat_score": 6,
+    "mitre_technique": "T1074.001",
+    "mitre_tactic": "Collection",
+    "tags": [
+      "data_staging"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T16:43:09.961284",
+    "event_category": "file_create",
+    "winlog": {
+      "event_id": 11,
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_data": {
+        "TargetFilename": "C:\\Windows\\Temp\\data_1.zip",
+        "ProcessId": 5678,
+        "Image": "C:\\Windows\\System32\\cmd.exe"
+      }
+    },
+    "threat_score": 6,
+    "mitre_technique": "T1074.001",
+    "mitre_tactic": "Collection",
+    "tags": [
+      "data_staging"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T16:44:09.961284",
+    "event_category": "file_create",
+    "winlog": {
+      "event_id": 11,
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_data": {
+        "TargetFilename": "C:\\Windows\\Temp\\data_2.zip",
+        "ProcessId": 5678,
+        "Image": "C:\\Windows\\System32\\cmd.exe"
+      }
+    },
+    "threat_score": 6,
+    "mitre_technique": "T1074.001",
+    "mitre_tactic": "Collection",
+    "tags": [
+      "data_staging"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T16:45:09.961284",
+    "event_category": "file_create",
+    "winlog": {
+      "event_id": 11,
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_data": {
+        "TargetFilename": "C:\\Windows\\Temp\\data_3.zip",
+        "ProcessId": 5678,
+        "Image": "C:\\Windows\\System32\\cmd.exe"
+      }
+    },
+    "threat_score": 6,
+    "mitre_technique": "T1074.001",
+    "mitre_tactic": "Collection",
+    "tags": [
+      "data_staging"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T16:46:09.961284",
+    "event_category": "file_create",
+    "winlog": {
+      "event_id": 11,
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_data": {
+        "TargetFilename": "C:\\Windows\\Temp\\data_4.zip",
+        "ProcessId": 5678,
+        "Image": "C:\\Windows\\System32\\cmd.exe"
+      }
+    },
+    "threat_score": 6,
+    "mitre_technique": "T1074.001",
+    "mitre_tactic": "Collection",
+    "tags": [
+      "data_staging"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:09.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 54596,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "YH3YRixYAUYsMTmWhWxuKjaV62EFsAL9J1qr7G3EWnW0qLlmg4EHuZIkciBpWUo.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:12.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 53548,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "KkYYbgZ5z2f6FgCXDXXM8jPNzlSeJy48jqsrb5B6ZW3jHxaOGjr0zXN5mbsClU2.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:15.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 53906,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "fd6xTWQbYHJbttDPtqLYArnSrU1BmT425A3v1jHzp6fwzFD2ExZ3HzlMK5fFTpF.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:18.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 58834,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "O7kwFidymfvTtu1YKirLKRWgjHCDz8J1KXXYFcHMk6lbjmlB05IQzKR6z53Qmne.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:21.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 50385,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "00hYxTv5VV5zLME0aLRSlpDwbBy1ktjuYkdUCSLRULqcwCz9k4dIYKgX6kTAYe9.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:24.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 57702,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "Ss2JpiMqDKpCiaNzLxRKvy7Lv4Lj1NsQljpEa0cNksAmqY7KI4w6tmaQeoH4hKk.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:27.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 58570,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "Ll6zfQ9cVgFw9bsm5djhrqsrrK4AkYWVN7AMEjRid4VthLQT959rktSs2pzeG6W.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:30.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 54587,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "C7STez10yDbLLyoSw01Q5AQ89SJC7YkTug45CYnr79teSPOCpSeUB87SiHB2A6r.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:33.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 52211,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "yjoSqYxVpjXNOAvgmtuSBEqzb4qAGEHMCu9wljLZBrULz2ZLFu9sE6v7B0FMVRd.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:36.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 53923,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "2aHHGVaBcolH5PdeJtpMawfQ8H5SVD310Pzpz70jyPZtOnET5MSAK9O4OchyPdh.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:39.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 57083,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "4W0wiJjpxU5RbgGYGJ7rGmivnrQVAjxAnP3DmIcknJjj66JSziN9D35FBaMvrjf.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:42.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 53065,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "Z6Yfb7mQbXpGKTuxGl3528eSw1U19OkUHhaW3XjMr765e3uREUt2sgvsN7nCUT2.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:45.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 58819,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "R6U639JO6U92o3koKUsyJsMiJU1NMx0KITlTAx4Uhh6SEV9nBDtqoGTfS5ePXwy.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:48.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 59410,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "IuiCCPsErW9bRen8d5F2wz53COdfHFMoKnjEI0pfMVUW1zgFQudNPKb2xfUcbvB.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:51.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 55214,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "1nkjFnGvWbS8NNhh7eQJAy5aeN7FfRLHZkI59DE6gtavoBFUfDQJbHK93cWthod.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:54.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 57334,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "zywLIBVkHRKS29TEqH2bEQz0pOFdpZXymVhhuZJFZOKEdR6qKqdA6hrqmFYTuYB.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:17:57.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 58220,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "jG4si7VL9c00OZTCZLvfw6Rj64j1uFwEUilBfdrBlUfqHym0AhaZgBHMTNXjrSx.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:18:00.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 54660,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "qlKPn7DJMTdifgRBOu2Vs7yKalrZoMwea6oKoaTGJUEXzux3oY1oZAU5NGorSL1.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:18:03.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 55148,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "ja4OJGB0ZOGzORef8dQwvw9QhW89lXZNVkS61Ay0TXxlUBvAtLzkfoVbtt1F7bK.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:18:06.961284",
+    "zeek_log_type": "dns",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 50930,
+      "resp_h": "8.8.8.8",
+      "resp_p": 53
+    },
+    "query": "dmMJY7pPOjMFy788jMsIwK5cJgfR9QLqnPVeuMAYr8eufXBaf5Lhwy9HNp5cND0.malicious-domain.com",
+    "qtype_name": "TXT",
+    "dns_long_query": true,
+    "dns_high_entropy": true,
+    "threat_score": 8,
+    "mitre_technique": "T1048.003",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "dns_tunneling_candidate"
+    ]
+  },
+  {
+    "@timestamp": "2025-09-24T17:57:09.961284",
+    "zeek_log_type": "connection",
+    "id": {
+      "orig_h": "192.168.1.100",
+      "orig_p": 50001,
+      "resp_h": "185.234.72.123",
+      "resp_p": 443
+    },
+    "duration": 300.5,
+    "orig_bytes": 52428800,
+    "resp_bytes": 1024,
+    "conn_state": "SF",
+    "service": "ssl",
+    "threat_score": 8,
+    "mitre_technique": "T1041",
+    "mitre_tactic": "Exfiltration",
+    "tags": [
+      "large_upload"
+    ],
+    "resp_geo": {
+      "country_name": "Russia",
+      "city_name": "Moscow",
+      "location": {
+        "lat": 55.7558,
+        "lon": 37.6176
+      }
+    }
+  }
+]

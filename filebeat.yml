@@ -1,0 +1,36 @@
+
+filebeat.inputs:
+- type: winlogbeat
+  name: sysmon
+  event_logs:
+    - name: Microsoft-Windows-Sysmon/Operational
+      processors:
+        - add_tags:
+            tags: [sysmon]
+
+- type: log
+  enabled: true
+  paths:
+    - /opt/zeek/logs/current/*.log
+  json.keys_under_root: true
+  json.add_error_key: true
+  processors:
+    - add_tags:
+        tags: [zeek]
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+processors:
+- add_host_metadata:
+    when.not.contains.tags: forwarded
+- add_docker_metadata: ~
+- add_kubernetes_metadata: ~
+
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7
+  permissions: 0644

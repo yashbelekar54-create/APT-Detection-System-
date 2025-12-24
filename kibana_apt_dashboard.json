@@ -1,0 +1,22 @@
+{
+  "version": "8.15.0",
+  "objects": [
+    {
+      "id": "apt-detection-dashboard",
+      "type": "dashboard",
+      "attributes": {
+        "title": "APT Detection Dashboard",
+        "hits": 0,
+        "description": "Real-time monitoring of Advanced Persistent Threat indicators",
+        "panelsJSON": "[{\"version\": \"8.15.0\", \"gridData\": {\"x\": 0, \"y\": 0, \"w\": 24, \"h\": 15, \"i\": \"1\"}, \"panelIndex\": \"1\", \"embeddableConfig\": {\"title\": \"Attack Timeline\"}, \"type\": \"visualization\", \"id\": \"apt-timeline-viz\"}, {\"version\": \"8.15.0\", \"gridData\": {\"x\": 24, \"y\": 0, \"w\": 24, \"h\": 15, \"i\": \"2\"}, \"panelIndex\": \"2\", \"embeddableConfig\": {\"title\": \"Threat Score Distribution\"}, \"type\": \"visualization\", \"id\": \"threat-score-pie\"}, {\"version\": \"8.15.0\", \"gridData\": {\"x\": 0, \"y\": 15, \"w\": 48, \"h\": 20, \"i\": \"3\"}, \"panelIndex\": \"3\", \"embeddableConfig\": {\"title\": \"MITRE ATT&CK Technique Coverage\"}, \"type\": \"visualization\", \"id\": \"mitre-attack-table\"}, {\"version\": \"8.15.0\", \"gridData\": {\"x\": 0, \"y\": 35, \"w\": 24, \"h\": 15, \"i\": \"4\"}, \"panelIndex\": \"4\", \"embeddableConfig\": {\"title\": \"Geographic Threat Map\"}, \"type\": \"visualization\", \"id\": \"geo-threat-map\"}]",
+        "timeRestore": false,
+        "timeTo": "now",
+        "timeFrom": "now-24h",
+        "refreshInterval": {
+          "pause": false,
+          "value": 30000
+        }
+      }
+    }
+  ]
+}

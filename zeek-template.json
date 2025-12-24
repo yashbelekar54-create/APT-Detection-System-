@@ -1,0 +1,164 @@
+{
+  "index_patterns": [
+    "zeek-logs-*"
+  ],
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1,
+    "index.refresh_interval": "5s",
+    "index.codec": "best_compression",
+    "index.lifecycle.name": "apt-detection-policy",
+    "index.lifecycle.rollover_alias": "zeek-logs"
+  },
+  "mappings": {
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "zeek_log_type": {
+        "type": "keyword"
+      },
+      "threat_score": {
+        "type": "integer"
+      },
+      "mitre_technique": {
+        "type": "keyword"
+      },
+      "mitre_tactic": {
+        "type": "keyword"
+      },
+      "id": {
+        "properties": {
+          "orig_h": {
+            "type": "ip"
+          },
+          "orig_p": {
+            "type": "integer"
+          },
+          "resp_h": {
+            "type": "ip"
+          },
+          "resp_p": {
+            "type": "integer"
+          }
+        }
+      },
+      "proto": {
+        "type": "keyword"
+      },
+      "service": {
+        "type": "keyword"
+      },
+      "duration": {
+        "type": "float"
+      },
+      "orig_bytes": {
+        "type": "long"
+      },
+      "resp_bytes": {
+        "type": "long"
+      },
+      "conn_state": {
+        "type": "keyword"
+      },
+      "local_orig": {
+        "type": "boolean"
+      },
+      "local_resp": {
+        "type": "boolean"
+      },
+      "missed_bytes": {
+        "type": "long"
+      },
+      "history": {
+        "type": "keyword"
+      },
+      "orig_pkts": {
+        "type": "long"
+      },
+      "orig_ip_bytes": {
+        "type": "long"
+      },
+      "resp_pkts": {
+        "type": "long"
+      },
+      "resp_ip_bytes": {
+        "type": "long"
+      },
+      "tunnel_parents": {
+        "type": "keyword"
+      },
+      "query": {
+        "type": "keyword"
+      },
+      "qclass": {
+        "type": "integer"
+      },
+      "qclass_name": {
+        "type": "keyword"
+      },
+      "qtype": {
+        "type": "integer"
+      },
+      "qtype_name": {
+        "type": "keyword"
+      },
+      "rcode": {
+        "type": "integer"
+      },
+      "rcode_name": {
+        "type": "keyword"
+      },
+      "AA": {
+        "type": "boolean"
+      },
+      "TC": {
+        "type": "boolean"
+      },
+      "RD": {
+        "type": "boolean"
+      },
+      "RA": {
+        "type": "boolean"
+      },
+      "Z": {
+        "type": "integer"
+      },
+      "answers": {
+        "type": "keyword"
+      },
+      "TTLs": {
+        "type": "float"
+      },
+      "rejected": {
+        "type": "boolean"
+      },
+      "orig_geo": {
+        "properties": {
+          "country_name": {
+            "type": "keyword"
+          },
+          "city_name": {
+            "type": "keyword"
+          },
+          "location": {
+            "type": "geo_point"
+          }
+        }
+      },
+      "resp_geo": {
+        "properties": {
+          "country_name": {
+            "type": "keyword"
+          },
+          "city_name": {
+            "type": "keyword"
+          },
+          "location": {
+            "type": "geo_point"
+          }
+        }
+      }
+    }
+  }
+}

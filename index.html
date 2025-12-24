@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APT Detection System - ELK Stack Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h1>APT Detection System</h1>
+            <span class="nav-subtitle">ELK Stack Security Operations Center</span>
+        </div>
+        <div class="nav-controls">
+            <button id="themeToggle" class="btn btn--outline nav-btn">🌙 Dark</button>
+            <div class="nav-status">
+                <span class="status status--success">System Online</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+            <button class="tab-btn" data-tab="rules">Detection Rules</button>
+            <button class="tab-btn" data-tab="threats">Threat Analysis</button>
+            <button class="tab-btn" data-tab="system">System Health</button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <!-- Key Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">🛡️</div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="totalThreats">0</div>
+                        <div class="metric-label">Total Threats</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">📋</div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="activeRules">0</div>
+                        <div class="metric-label">Active Rules</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="coveragePercent">0%</div>
+                        <div class="metric-label">MITRE Coverage</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">⚠️</div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="highSeverity">0</div>
+                        <div class="metric-label">High Severity</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- MITRE ATT&CK Coverage -->
+                <div class="card mitre-coverage-card">
+                    <div class="card__header">
+                        <h3>MITRE ATT&CK Coverage</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="mitre-heatmap" id="mitreHeatmap"></div>
+                    </div>
+                </div>
+
+                <!-- Geographic Threat Map -->
+                <div class="card map-card">
+                    <div class="card__header">
+                        <h3>Geographic Threat Origins</h3>
+                    </div>
+                    <div class="card__body">
+                        <div id="threatMap" class="threat-map"></div>
+                    </div>
+                </div>
+
+                <!-- Recent Threats Timeline -->
+                <div class="card timeline-card">
+                    <div class="card__header">
+                        <h3>Recent Threat Detections</h3>
+                        <button class="btn btn--sm btn--outline">Export</button>
+                    </div>
+                    <div class="card__body">
+                        <div class="threat-timeline" id="threatTimeline"></div>
+                    </div>
+                </div>
+
+                <!-- Threat Categories Chart -->
+                <div class="card chart-card">
+                    <div class="card__header">
+                        <h3>Threats by Category</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="chart-container" style="height: 300px; position: relative;">
+                            <canvas id="threatCategoriesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detection Rules Tab -->
+        <div id="rules" class="tab-content">
+            <div class="rules-header">
+                <div class="rules-controls">
+                    <input type="text" id="ruleSearch" class="form-control" placeholder="Search rules...">
+                    <select id="severityFilter" class="form-control">
+                        <option value="">All Severities</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                <button class="btn btn--primary">+ Add Rule</button>
+            </div>
+            
+            <div class="rules-grid" id="rulesGrid"></div>
+        </div>
+
+        <!-- Threat Analysis Tab -->
+        <div id="threats" class="tab-content">
+            <div class="threat-analysis">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Attack Progression Analysis</h3>
+                        <select id="threatSelect" class="form-control">
+                            <option value="">Select a threat...</option>
+                        </select>
+                    </div>
+                    <div class="card__body">
+                        <div id="attackProgression" class="attack-progression">
+                            <div class="progression-step">
+                                <div class="step-icon">🔍</div>
+                                <div class="step-content">
+                                    <div class="step-title">Initial Reconnaissance</div>
+                                    <div class="step-detail">Port scanning from 192.168.1.100</div>
+                                </div>
+                                <div class="step-status active"></div>
+                            </div>
+                            <div class="progression-step">
+                                <div class="step-icon">🔑</div>
+                                <div class="step-content">
+                                    <div class="step-title">Credential Access</div>
+                                    <div class="step-detail">Mimikatz execution detected</div>
+                                </div>
+                                <div class="step-status active"></div>
+                            </div>
+                            <div class="progression-step">
+                                <div class="step-icon">🚀</div>
+                                <div class="step-content">
+                                    <div class="step-title">Lateral Movement</div>
+                                    <div class="step-detail">Suspicious SMB connections</div>
+                                </div>
+                                <div class="step-status"></div>
+                            </div>
+                            <div class="progression-step">
+                                <div class="step-icon">📤</div>
+                                <div class="step-content">
+                                    <div class="step-title">Data Exfiltration</div>
+                                    <div class="step-detail">DNS tunneling attempts</div>
+                                </div>
+                                <div class="step-status active"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IOCs Section -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Indicators of Compromise (IOCs)</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="ioc-grid">
+                            <div class="ioc-item">
+                                <div class="ioc-type">IP Address</div>
+                                <div class="ioc-value">192.168.1.100</div>
+                                <div class="ioc-confidence">High Confidence</div>
+                            </div>
+                            <div class="ioc-item">
+                                <div class="ioc-type">Domain</div>
+                                <div class="ioc-value">malicious-domain.com</div>
+                                <div class="ioc-confidence">High Confidence</div>
+                            </div>
+                            <div class="ioc-item">
+                                <div class="ioc-type">Process</div>
+                                <div class="ioc-value">mimikatz.exe</div>
+                                <div class="ioc-confidence">Critical</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Health Tab -->
+        <div id="system" class="tab-content">
+            <div class="system-grid">
+                <!-- ELK Components Status -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3>ELK Stack Components</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="component-status">
+                            <div class="component">
+                                <div class="component-icon">🔍</div>
+                                <div class="component-info">
+                                    <div class="component-name">Elasticsearch</div>
+                                    <div class="component-metrics">CPU: 45% | Memory: 78% | Disk: 62%</div>
+                                </div>
+                                <div class="status status--success">Healthy</div>
+                            </div>
+                            <div class="component">
+                                <div class="component-icon">⚙️</div>
+                                <div class="component-info">
+                                    <div class="component-name">Logstash</div>
+                                    <div class="component-metrics">CPU: 32% | Memory: 56% | Throughput: 8,547 docs/sec</div>
+                                </div>
+                                <div class="status status--success">Healthy</div>
+                            </div>
+                            <div class="component">
+                                <div class="component-icon">📊</div>
+                                <div class="component-info">
+                                    <div class="component-name">Kibana</div>
+                                    <div class="component-metrics">CPU: 15% | Memory: 34% | Active Users: 12</div>
+                                </div>
+                                <div class="status status--success">Healthy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Metrics -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Performance Metrics</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="performance-metrics">
+                            <div class="perf-metric">
+                                <div class="perf-label">Ingestion Rate</div>
+                                <div class="perf-value">10,542 events/sec</div>
+                            </div>
+                            <div class="perf-metric">
+                                <div class="perf-label">Storage Used</div>
+                                <div class="perf-value">2.3TB / 5.0TB</div>
+                            </div>
+                            <div class="perf-metric">
+                                <div class="perf-label">Query Response Time</div>
+                                <div class="perf-value">127ms avg</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELK Architecture -->
+                <div class="card architecture-card">
+                    <div class="card__header">
+                        <h3>System Architecture</h3>
+                    </div>
+                    <div class="card__body">
+                        <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/8021ff8c959296dcce1db09d2ae92196/3d7c448d-c8c0-40f3-acbd-ff51b68c8ff4/35c44f4b.png" alt="ELK Stack Architecture" class="architecture-diagram">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

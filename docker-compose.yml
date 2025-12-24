@@ -1,0 +1,78 @@
+version: '3.8'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    container_name: elasticsearch
+    environment:
+      - cluster.name=apt-detection
+      - node.name=elasticsearch
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+      - ./elasticsearch-templates:/usr/share/elasticsearch/templates
+    ports:
+      - "9200:9200"
+    networks:
+      - apt-detection
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.15.0
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - SERVER_NAME=kibana
+      - xpack.security.enabled=false
+    ports:
+      - "5601:5601"
+    networks:
+      - apt-detection
+    depends_on:
+      - elasticsearch
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.15.0
+    container_name: logstash
+    volumes:
+      - ./logstash-config:/usr/share/logstash/pipeline
+      - ./logstash-templates:/usr/share/logstash/templates
+      - zeek_logs:/opt/zeek/logs:ro
+    ports:
+      - "5044:5044"
+    networks:
+      - apt-detection
+    depends_on:
+      - elasticsearch
+    environment:
+      - "LS_JAVA_OPTS=-Xmx1g -Xms1g"
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.15.0
+    container_name: filebeat
+    user: root
+    volumes:
+      - ./filebeat-config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - apt-detection
+    depends_on:
+      - logstash
+
+volumes:
+  elasticsearch_data:
+    driver: local
+  zeek_logs:
+    driver: local
+
+networks:
+  apt-detection:
+    driver: bridge
